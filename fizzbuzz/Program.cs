@@ -5,7 +5,7 @@ namespace fizzbuzz
 {
     internal class Program
     {
-        private static Dictionary<int, string> replacements = new Dictionary<int, string>()
+        private static Dictionary<int, string> replacements = new()
         {
             {3, "Fizz"},
             {5, "Buzz"},
@@ -16,6 +16,14 @@ namespace fizzbuzz
 
         private static void Main(string[] args)
         {
+            // 3, 5, 7
+            Dictionary<string, bool> optionalRules = new() {{"3", false}, {"5", false}, {"7", false}};
+
+            foreach (var s in args)
+            {
+                optionalRules[s] = true;
+            }
+
             Console.Out.Write("Please enter the max number: ");
             var max = Convert.ToInt32(Console.ReadLine());
 
@@ -26,13 +34,13 @@ namespace fizzbuzz
 
                 var curr = i + 1;
 
-                if (curr % 3 == 0)
+                if (optionalRules[3.ToString()] && curr % 3 == 0)
                     output.Add(replacements[3]);
 
-                if (curr % 5 == 0)
+                if (optionalRules[5.ToString()] && curr % 5 == 0)
                     output.Add(replacements[5]);
 
-                if (curr % 7 == 0)
+                if (optionalRules[7.ToString()] && curr % 7 == 0)
                     output.Add(replacements[7]);
 
                 if (curr % 11 == 0)
