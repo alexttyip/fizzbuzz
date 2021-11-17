@@ -16,8 +16,11 @@ namespace fizzbuzz
 
         private static void Main(string[] args)
         {
+            Console.Out.Write("Please enter the max number: ");
+            var max = Convert.ToInt32(Console.ReadLine());
+
             var output = new List<string>();
-            for (var i = 0; i < 300; i++)
+            for (var i = 0; i < max; i++)
             {
                 output.Clear();
 
